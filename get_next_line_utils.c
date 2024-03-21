@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:31:05 by flfische          #+#    #+#             */
-/*   Updated: 2024/03/21 12:43:55 by flfische         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:17:04 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,29 @@ char	*ft_strdup(const char *s1)
 	}
 	ft_strlcpy(dest, s1, len);
 	return (dest);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+	size_t	slen;
+
+	slen = ft_strlen(s);
+	if (start >= slen || len == 0)
+	{
+		sub = malloc(1);
+		if (sub == NULL)
+			return (NULL);
+		sub[0] = '\0';
+		return (sub);
+	}
+	s = s + start;
+	slen -= start;
+	if (slen < len)
+		len = slen;
+	sub = malloc(len + 1);
+	if (sub == NULL)
+		return (NULL);
+	ft_strlcpy(sub, s, len + 1);
+	return (sub);
 }
