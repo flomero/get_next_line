@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:31:31 by flfische          #+#    #+#             */
-/*   Updated: 2024/03/21 14:56:32 by flfische         ###   ########.fr       */
+/*   Updated: 2024/03/21 14:58:30 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	*get_next_line(int fd)
 					'\n')));
 	else
 		save[0] = '\0';
+	if (ft_strlen(line) == 0 && bytes_read == 0)
+		return (free(line), NULL);
 	return (line);
 }
 
