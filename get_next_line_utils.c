@@ -6,7 +6,7 @@
 /*   By: flfische <flfische@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:31:05 by flfische          #+#    #+#             */
-/*   Updated: 2024/03/21 16:17:04 by flfische         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:38:59 by flfische         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,6 @@ char	*ft_strchr(const char *s, int c)
 	if (uc == '\0')
 		return ((char *)cs);
 	return (NULL);
-}
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	src_len;
-
-	src_len = ft_strlen(src);
-	if (src_len + 1 < dstsize)
-		ft_memcpy(dst, src, src_len + 1);
-	else if (dstsize)
-	{
-		ft_memcpy(dst, src, dstsize - 1);
-		dst[dstsize - 1] = '\0';
-	}
-	return (src_len);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -107,31 +92,7 @@ char	*ft_strdup(const char *s1)
 	{
 		return (NULL);
 	}
-	ft_strlcpy(dest, s1, len);
+	ft_memcpy(dest, s1, len - 1);
+	dest[len - 1] = '\0';
 	return (dest);
-}
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
-{
-	char	*sub;
-	size_t	slen;
-
-	slen = ft_strlen(s);
-	if (start >= slen || len == 0)
-	{
-		sub = malloc(1);
-		if (sub == NULL)
-			return (NULL);
-		sub[0] = '\0';
-		return (sub);
-	}
-	s = s + start;
-	slen -= start;
-	if (slen < len)
-		len = slen;
-	sub = malloc(len + 1);
-	if (sub == NULL)
-		return (NULL);
-	ft_strlcpy(sub, s, len + 1);
-	return (sub);
 }
